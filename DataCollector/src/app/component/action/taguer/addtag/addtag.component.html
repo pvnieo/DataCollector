@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Add Tag</h2>
+<mat-dialog-content>
+  <mat-checkbox>Tag 1</mat-checkbox>
+  <mat-checkbox>Tag 2</mat-checkbox>
+  <mat-checkbox>Tag 3</mat-checkbox>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" [mat-dialog-close]="false">Save</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-raised-button color="accent" [mat-dialog-close]="true">Exit</button>
+</mat-dialog-actions>

@@ -1,0 +1,37 @@
+<mat-card>
+    <mat-card-title>
+      <span>
+        <button mat-button>
+           <mat-icon>title</mat-icon>
+           Taguer
+      </button>
+      </span>
+    </mat-card-title>
+  <mat-card-content>
+    <mat-accordion class="example-headers-align">
+
+      <mat-expansion-panel *ngFor="let question of questions" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title style='padding-top:1.3em;'>
+            {{question.value}}
+          </mat-panel-title>
+          <mat-panel-description>
+            <mat-form-field>
+              <mat-select>
+                <mat-option *ngFor="let intent of intents" [value]="intent.value">
+                  {{ intent.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-list *ngFor="let response of responses[question.id]" role="list">
+          <mat-list-item role="listitem" (dblclick)="test($event)">{{ response }}</mat-list-item>
+        </mat-list>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </mat-card-content>
+</mat-card>

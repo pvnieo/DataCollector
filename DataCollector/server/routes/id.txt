@@ -1,0 +1,209 @@
+const constants = require('./constants');
+
+module.exports = {
+  [constants.startState]: {
+    contents: [{ text: 'Bonjour !!!' }],
+    timer: 2000,
+    goDirect: '1',
+  },
+  1: {
+    contents: [{ text: 'Nous cherchons actuellement à créer un robot capable de répondre par chat à vos questions les plus courantes sur la future application mobile Youplan de Randstad.' }],
+    timer: 4500,
+    goDirect: '2',
+  },
+  2: {
+    contents: [{ text: 'Nous avons besoin de vous pour lui apprendre à mieux comprendre vos demandes.' }],
+    timer: 3000,
+    goDirect: '3',
+  },
+  3: {
+    contents: [{ text: 'Vous allez devoir reformuler des phrases ou questions. Pour chaque phrase/question proposée, essayez de trouver le plus de reformulations possibles. Donnez-nous les formulations les plus naturelles pour vous ! 😉' }],
+    timer: 6500,
+    goDirect: '4',
+  },
+  4: {
+    contents: [{ text: 'Vos propositions vous feront gagner des étoiles.' }],
+    timer: 3000,
+    events: ['displayScore'],
+    goDirect: '5',
+  },
+  5: {
+    contents: [{ text: 'Au-delà de 3 étoiles, votre participation sera récompensée. Et, pour ceux qui auront au moins 5 étoiles, un tirage au sort aura lieu pour gagner une tablette samsung ! 🎁🎉' }],
+    timer: 5000,
+    goDirect: '6',
+  },
+  6: {
+    contents: [{
+      text: 'Tout est clair pour vous ?',
+      suggestions: {
+        choices: ['Oui', 'Non'],
+      },
+    }],
+    id: 1,
+    isConditional: true,
+    wait: false,
+    goAfter: { Non: '3', default: '7' },
+  },
+  7: {
+    contents: [{ text: 'Je vous montre un petit exemple :' }],
+    timer: 2000,
+    goDirect: '8',
+  },
+  8: {
+    contents: [{ text: 'Indiquez-nous différentes manières de demander la date de votre prochaine visite médicale.' }],
+    timer: 3000,
+    goDirect: '9',
+  },
+  9: {
+    contents: [{ text: 'Quand est planifiée ma prochaine visite médicale ?' }],
+    from: 'client',
+    timer: 2000,
+    goDirect: '10',
+  },
+  10: {
+    contents: [{ text: 'Quand dois-je voir le médecin ?' }],
+    from: 'client',
+    timer: 2000,
+    goDirect: '11',
+  },
+  11: {
+    contents: [{ text: 'Quelle est la date de ma prochaine visite médicale ?' }],
+    from: 'client',
+    timer: 2000,
+    goDirect: '12',
+  },
+  12: {
+    contents: [{ text: 'Maintenant, à vous de jouer !!!' }],
+    events: ['start'],
+    timer: 1000,
+    goDirect: '13',
+  },
+  13: {
+    contents: [{ image: { source: 'https://media.giphy.com/media/U86dK3B1QK7eg/giphy.gif', width: 160, height: 184 } }],
+    timer: 1000,
+    goDirect: '14',
+  },
+  14: {
+    contents: [{ text: 'Vous souhaitez visualiser la liste des missions disponibles actuellement. Comment le demandez-vous ?' }],
+    id: 2,
+    wait: true,
+    score: 20,
+    goAfter: '15',
+  },
+  15: {
+    contents: [{ text: 'Comment demanderiez-vous à avoir accès à votre agenda ou emploi du temps ?' }],
+    id: 3,
+    wait: true,
+    score: 20,
+    goAfter: '16',
+  },
+  16: {
+    contents: [{ text: 'De quelle manière indiqueriez-vous vos disponibilités ou indisponibilités pour la semaine prochaine ?' }],
+    id: 4,
+    wait: true,
+    score: 20,
+    goAfter: '17',
+  },
+  17: {
+    contents: [{ text: 'Et si une de vos indisponibilités concernait mardi prochain ? Comment le formuleriez-vous ?' }],
+    id: 5,
+    wait: true,
+    score: 20,
+    goAfter: '18',
+  },
+  18: {
+    contents: [{ text: 'Comment demanderiez-vous le montant de votre droit à acompte ?' }],
+    id: 6,
+    wait: true,
+    score: 20,
+    goAfter: '19',
+  },
+  19: {
+    contents: [{ text: 'Et si vous désiriez avoir une avance sur salaire de 200€, comment le formuleriez-vous ?' }],
+    id: 7,
+    wait: true,
+    score: 20,
+    goAfter: '20',
+  },
+  20: {
+    contents: [{ text: 'Merci pour toutes ces propositions.' }],
+    timer: 1000,
+    goDirect: '21',
+  },
+  21: {
+    contents: [{ text: 'Auriez-vous en tête une ou plusieurs autres fonctionnalités intéressantes à mettre en place  sur notre future application Randstad Youplan ?' }],
+    id: 8,
+    wait: true,
+    score: 20,
+    goAfter: '22',
+  },
+  22: {
+    contents: [{ text: 'Pour terminer, quelques questions pratiques :' }],
+    timer: 1000,
+    goDirect: '23',
+  },
+  23: {
+    contents: [{
+      text: 'Avez-vous un compte Facebook ?',
+      suggestions: {
+        choices: ['Oui', 'Non'],
+      },
+    }],
+    id: 9,
+    wait: false,
+    goAfter: '24',
+  },
+  24: {
+    contents: [{
+      text: 'Avez-vous un compte Messenger ?',
+      suggestions: {
+        choices: ['Oui', 'Non'],
+      },
+    }],
+    id: 10,
+    wait: false,
+    goAfter: '25',
+  },
+  25: {
+    contents: [{
+      text: 'Quel autre canal de messagerie avez-vous l'habitude d'utiliser ?',
+      suggestions: {
+        choices: ['SMS', 'WhatsApp', 'Telegram', 'Skype', 'Autre'],
+        multi: true,
+      },
+    }],
+    id: 11,
+    wait: false,
+    goAfter: '26',
+  },
+  26: {
+    contents: [{
+      text: 'Avez-vous un smartphone ?',
+      suggestions: {
+        choices: ['iPhone', 'Android', 'Windows Phone', 'Pas de  smartphone'],
+      },
+    }],
+    id: 12,
+    wait: false,
+    goAfter: '27',
+  },
+  27: {
+    contents: [{ text: 'Merci d'avoir répondu à ces questions ! 👏🏽' }],
+    timer: 1000,
+    goDirect: '28',
+  },
+  28: {
+    contents: [{ image: { source: 'https://media.giphy.com/media/yoJC2El7xJkYCadlWE/giphy.gif', width: 230, height: 140 } }],
+    timer: 1000,
+    goDirect: '29',
+  },
+  29: {
+    contents: [{ text: 'Nous reprendrons contact avec vous dans les prochains jours si vous faites partie des gagnants. 👋🏽' }],
+    events: ['stop'],
+    timer: 2000,
+    goDirect: constants.lastState,
+  },
+  [constants.lastState]: {
+    contents: [{ image: { source: 'https://media.giphy.com/media/hmxZRW8mhs4ak/giphy.gif', width: 248, height: 188 } }],
+  },
+};

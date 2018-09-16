@@ -1,0 +1,50 @@
+<td-layout-manage-list
+[opened]="media.registerQuery('gt-sm') | async"
+                        [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'"
+                        [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '1px' : '100%'">
+
+  <section>
+    <div layout-gt-xs="row" layout-align="space-between center">
+      <div flex class="pad" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
+      <div class="push-top-xl" hide-xs></div>
+      <div tdMediaToggle="gt-sm" [mediaClasses]="['push-lg']">
+        <mat-card-title>
+          <span>
+               <mat-icon class="size-48dp">widgets</mat-icon>
+               Database Info
+          </span>
+        </mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <td-expansion-panel label="Please choose Database">
+            <div class="md-padding">
+              <button mat-button class="mat-subheading-2" [routerLink]="['db2']">Randstad_Interimbot</button>
+            </div>
+            <div class="md-padding">
+              <button mat-button class="mat-subheading-2" [routerLink]="['db1']">LaPoste_Chatbot</button>
+            </div>
+          </td-expansion-panel>
+          <mat-list>
+            <h3 matSubheader>Current Database</h3>
+              <router-outlet></router-outlet>
+            <mat-divider></mat-divider>
+          </mat-list>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="warn" class="text-upper" td-menu-button tdLayoutToggle>GO</button>
+        </mat-card-actions>
+      </div>
+        <div class="push-bottom-xl" hide-xs></div>
+      </div>
+      <div flex-gt-xs="75">
+        <mat-card>
+          <mat-card-title>Current Use </mat-card-title>
+          <mat-divider></mat-divider>
+          <div style="height: 500px">
+            <div id="container"></div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+</td-layout-manage-list>

@@ -1,0 +1,27 @@
+<td-layout-manage-list
+[opened]="media.registerQuery('gt-sm') | async"
+                        [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'"
+                        [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'">
+  <mat-toolbar td-sidenav-content>
+    <mat-toolbar-row>
+      <span>Action</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-nav-list td-sidenav-content [tdLayoutManageListClose]="!media.query('gt-sm')">
+    <a mat-list-item
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{exact:true}"
+      [routerLink]="['clean']">
+      <mat-icon matListIcon>delete_sweep</mat-icon>
+      Clean
+    </a>
+    <a mat-list-item
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{exact:true}"
+      [routerLink]="['taguer']">
+      <mat-icon matListIcon>title</mat-icon>
+      Taguer
+    </a>
+  </mat-nav-list>
+  <router-outlet></router-outlet>
+</td-layout-manage-list>
